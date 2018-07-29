@@ -30,6 +30,9 @@ export default {
         Object
           .keys(context.data[handler])
           .forEach(event => {
+            if (!(handler in child.data))
+              child.data[handler] = {};
+
             if (!(event in child.data[handler]))
               return child.data[handler][event] = context.data[handler][event];
 
