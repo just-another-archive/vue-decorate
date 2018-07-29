@@ -1,0 +1,38 @@
+{
+  "name": "vue-decorate",
+  "version": "1.0.0",
+  "description": "vuejs component to decorate given child",
+  "main": "./dist/vue-decorate.min.js",
+  "global": "VDecorate",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./rollup.build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y-nk/vue-decorate.git"
+  },
+  "keywords": [
+    "vuejs",
+    "component",
+    "attribute",
+    "manipulation",
+    "decorate"
+  ],
+  "author": "Julien Barbay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/y-nk/vue-decorate/issues"
+  },
+  "peerDependencies": {
+    "vue": "^2.5.16"
+  },
+  "files": [
+    "*.md", "**/*.js"
+  ],
+  "homepage": "https://github.com/y-nk/vue-decorate#readme",
+  "devDependencies": {
+    "rollup": "^0.60.4",
+    "rollup-plugin-minify-es": "^1.1.1"
+  }
+}
