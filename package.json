@@ -1,6 +1,6 @@
 {
   "name": "vue-decorate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vuejs component to decorate given child",
   "main": "./dist/vue-decorate.min.js",
   "global": "VDecorate",
