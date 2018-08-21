@@ -15,14 +15,28 @@ export default {
         .join(' ')
 
 
-    ;['class', 'style',
-    'attrs', 'props', 'domProps',
-    'directives', 'ref']
+    ;['class', 'style', 'directives', 'ref']
       .filter(key => key in context.data)
       .forEach(key => {
         child.data[key] = Object.assign({}, child.data[key], context.data[key])
       })
 
+    const glob = ['attrs', 'props', 'domProps']
+      .reduce(
+        (object, key) => Object.assign({}, object, context.data[key]),
+        {}
+      )
+
+    ;Object
+      .entries(glob)
+      .forEach(([prop, value]) => {
+        const which = ['attrs', 'props', 'domProps']
+          .find(key => !!child.data[key] && (prop in child.data[key]))
+
+        if (which) {
+          child.data[which][prop] = value;
+        }
+      })
 
     ;['on', 'nativeOn']
       .filter(key => key in context.data)
