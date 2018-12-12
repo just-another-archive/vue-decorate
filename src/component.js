@@ -8,7 +8,7 @@ export default {
       return null
 
     // static class exception
-    if ('staticClass' in context.data)
+    if (context.data.staticClass)
       child.data.staticClass = [child, context]
         .map(o => o.data.staticClass)
         .filter(s => !!s)
@@ -16,7 +16,7 @@ export default {
 
 
     ;['class', 'style', 'directives', 'ref']
-      .filter(key => key in context.data)
+      .filter(key => context.data[key])
       .forEach(key => {
         child.data[key] = Object.assign({}, child.data[key], context.data[key])
       })
@@ -31,7 +31,7 @@ export default {
       .entries(glob)
       .forEach(([prop, value]) => {
         const which = ['attrs', 'props', 'domProps']
-          .find(key => !!child.data[key] && (prop in child.data[key]))
+          .find(key => !!child.data[key] && child.data[key][prop])
 
         if (which) {
           child.data[which][prop] = value;
@@ -39,15 +39,15 @@ export default {
       })
 
     ;['on', 'nativeOn']
-      .filter(key => key in context.data)
+      .filter(key => context.data[key])
       .forEach(handler => {
         Object
           .keys(context.data[handler])
           .forEach(event => {
-            if (!(handler in child.data))
+            if (!child.data[handler])
               child.data[handler] = {};
 
-            if (!(event in child.data[handler]))
+            if (!child.data[handler][event])
               return child.data[handler][event] = context.data[handler][event];
 
             child.data[handler][event] = [child, context]
